@@ -56,7 +56,7 @@ public class C01_PropertiesTest {
         ReusableMethods.screenShot("OpenSource");
         ReusableMethods.screenShotOfWebElement(openSourcePage.dashBoard);
 
-        //sayfayı kapatalimms
+        //sayfayı kapatalimmsasdasd
 
         Driver.closeDriver();
 
