@@ -12,6 +12,7 @@ public class C02_ClassWork {
     @Test
     public void test01() {
 
+
         //https://testcenter.techproeducation.com/index.php?page=form-authentication
         Driver.getDriver().get(ConfigReader.getProperty("testCenterUrl"));
         //Page object Model kullanarak sayfaya giriş yapildigini test edin
