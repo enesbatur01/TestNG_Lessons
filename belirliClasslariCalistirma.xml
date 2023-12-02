@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Batch189">
+    <test name="Smoke Test">
+        <classes>
+            <class name="techproed.tests.day20_annotations_softassert.C02_Priority"></class>
+            <class name="techproed.tests.day21_POM.C03_PageKullanimi"></class>
+        </classes>
+    </test>
+</suite>
