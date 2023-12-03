@@ -6,7 +6,7 @@ import techproed.pages.AmazonPage;
 import techproed.utilities.Driver;
 
 public class C02_PageKullanimi {
-    @Test
+    @Test(groups = "smoke")
     public void test01() {
 
         //amazon sayfasina gidelim

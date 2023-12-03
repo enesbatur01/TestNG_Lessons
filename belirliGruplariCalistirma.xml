@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Batch189">
+    <test name="Smoke Test">
+        <groups>
+            <run>
+                <include name="smoke"></include>
+            </run>
+        </groups>
+        <packages>
+            <package name="techproed.tests.day21_POM"></package>
+        </packages>
+    </test>
+</suite>

@@ -16,31 +16,36 @@ public class Driver {
         bu yüzden constructor i private yaptik
          */
     }
+    //WebDriver tipinde bir ThreadLocal objecti olusturduk
+    //Bu sayede paralel test yaparken her threadin kendi webdriver objectine sahip olmasini sagladik
+    //ve böylece pralel olarak calisan farkli threadler birbirlerinin webdriverlerini etkileyemezler
+    // ThreadLocal ile her thread için ayrı bir WebDriver objesi oluşturuyoruz.
+    // ThreadLocal ile her thread için ayrı bir WebDriver objesi oluşturuyoruz.
+    private static ThreadLocal<WebDriver> driverPool = new ThreadLocal<>();
 
-    static WebDriver driver;
 
     public static WebDriver getDriver() {
 
-        if (driver == null) {
+        if (driverPool.get() == null) {
             switch (ConfigReader.getProperty("browser")) {
                 case "chrome":
-                    driver = new ChromeDriver();
+                    driverPool.set(new ChromeDriver());
                     break;
                 case "edge":
-                    driver = new EdgeDriver();
+                    driverPool.set(new EdgeDriver());
                     break;
                 case "firefox":
-                    driver = new FirefoxDriver();
+                    driverPool.set(new FirefoxDriver());
                     break;
                 default:
-                    driver = new ChromeDriver();
+                    driverPool.set(new ChromeDriver());
 
             }
 
-            driver.manage().window().maximize();
-            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+            driverPool.get().manage().window().maximize();
+            driverPool.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
         }
-        return driver;
+        return driverPool.get();
     }
     /*
     Driver i her cagirdigimizda yeni bir pencere acmammasi icin bir if bloğu ile ayarlama yaptik
@@ -55,9 +60,10 @@ public class Driver {
      */
 
     public static void closeDriver() {
-        if (driver != null) {
-            driver.close();
-            driver = null;
+        // Açık olan WebDriver örneğini kapatıyoruz.
+        if (driverPool.get() != null) {
+            driverPool.get().quit();
+            driverPool.remove();// ThreadLocal'daki referansı temizliyoruz.
         }
     }
 
