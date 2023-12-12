@@ -1,11 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="All Test Suite" parallel="classes" thread-count="2">
+<suite name="All Test Suite">
+    
+    <listeners>
+        <listener class-name="techproed.utilities.Listeners"></listener>
+    </listeners>
+    
     <test verbose="2" preserve-order="true"
-          name="classlari parallel calistirma">
+          name="Listeners Xml çaliştirma">
         <classes>
-            <class name="techproed.tests.day25_xmlfiles_paralleltesting.C01_ParallelTest"/>
-            <class name="techproed.tests.day25_xmlfiles_paralleltesting.C02_ParallelTest"/>
+            <class name="techproed.tests.day26_listeners.C02_ListenersTest">
+                <methods>
+                    <include name="test01"/>
+                    <include name="test02"/>
+                    <include name="test03"/>
+                    <include name="test04"/>
+                </methods>
+            </class>
         </classes>
     </test>
 </suite>
